@@ -4,14 +4,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Loading() {
   return (
-    <div className="bg-cgreen/30 h-screen rlative">
-      <div className=" flex justify-center items-center absolute top-0 ">
-        <div className="animate-spin ">
+    <div className=" bg-navy/80  overflow-hidden top-0 z-20 flex justify-center items-center relative w-full opacity-100 h-screen ">
+      <div className="  absolute">
+        <div className="animate-spin">
           <FontAwesomeIcon
             icon={faCircleNotch}
-            className=" h-[3rem] w-[3rem] "
+            className=" h-[3rem] w-[3rem] text-white"
           />
-          <span class="sr-only">Loading...</span>
         </div>
       </div>
     </div>

@@ -1,24 +1,55 @@
 import React from "react";
-import { Carousel } from "react-responsive-carousel";
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // Import carousel styles
+import Slider from "react-slick";
+import Product from "../pages/products/Product.js";
 
-export default function CarouselComponent(props) {
-  const { images } = props;
+export default function CarouselComponent({ products }) {
+  const settings = {
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 1000,
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 1000,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  };
+
   return (
-    <div className="max-w-xl mx-auto">
-      <Carousel
-        autoPlay
-        infiniteLoop
-        showArrows={false} // Hide navigation arrows
-        showStatus={false} // Hide status indicator
-        showThumbs={false} // Hide thumbnail images
-      >
-        {images.map((img, index) => (
-          <div>
-            <img src="image3.jpg" alt="Image 3" />
-          </div>
-        ))}
-      </Carousel>
+    <div>
+      {!products ? (
+        <div>Products not found....</div>
+      ) : (
+        <Slider {...settings}>
+          {products.map((product) => {
+            return (
+              <div className="px-4 md:w-[80%]  xl:w-full h-[25rem] md:h-[25rem] lg:h-[25rem]  xl:h-[30rem] 2xl:h-[40rem]">
+                <Product product={product} />
+              </div>
+            );
+          })}
+        </Slider>
+      )}
     </div>
   );
 }
